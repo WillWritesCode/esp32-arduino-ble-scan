@@ -3,7 +3,7 @@ BLE scanning using Arduino environment on an ESP32, initially set up for Jinou t
 
 ## Sensor device info
 
-Example manufacturer data from 2 Jinou sensors:
+Example manufacturer data from 2 Jinou JO-0628 BLE temperature/humidity sensors:
 `001502002e045afe510aaad1aa`
 `001508002d0261e50cd530712f`
 Breaks down into:

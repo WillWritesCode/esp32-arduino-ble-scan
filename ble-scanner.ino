@@ -53,10 +53,6 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
         // currently dealing with this as a string 
         std::string str_data = getManufacturerDataHexString(advertisedDevice);
         if (DEBUG) Serial.printf("** data: %s \n", str_data.c_str());
-        //example data from 2 Jinou sensors
-        //001502002e045afe510aaad1aa
-        //001508002d0261e50cd530712f
-        //00 1508 00 2d02 61 e50cd530712f
         
         int decimal_temp = twoHexCharsToInteger(str_data.at(2), str_data.at(3));
         int decimal_sub_temp = twoHexCharsToInteger(str_data.at(4), str_data.at(5));
@@ -105,10 +101,5 @@ void loop() {
   pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
   //use random delay to reduce risk of missing sepcific devices
   delay( random(100, 3000));
-  /*
-   * TODO:
-   *  - add some config and control
-   *  - stream results over MQTT or HTTP
-   *  - consider logging total device count as a signal (possibly of room occupancy levels)
-   */
+
 }

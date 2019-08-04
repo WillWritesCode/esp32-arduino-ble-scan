@@ -19,7 +19,7 @@ const BLEUUID temp_humidity_service = BLEUUID("0000aa20-0000-1000-8000-00805f9b3
 int scanTime = 8; //In seconds
 BLEScan* pBLEScan;
 
-const bool DEBUG = false;
+const bool DEBUG = true;
 const bool TRACK_ALL = false;
 int sensorsFound = 0;
 
@@ -36,11 +36,17 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
     }
 
     int twoHexCharsToInteger(char sixteens, char ones) {
-        int decimal = sixteens - '0';
+        int decimal = hexCharToInt(sixteens);
         decimal = decimal * 16;
         int ones_int = ones - '0';
+        ones_int = hexCharToInt(ones);
         decimal += ones_int;
         return decimal;
+    }
+    int hexCharToInt(char hex){
+      int val = hex - '0';
+      if (hex > '9') val -= 39;
+      return val;
     }
     void onResult(BLEAdvertisedDevice advertisedDevice) {
       if (DEBUG) Serial.printf("Advertised Device: %s \n", advertisedDevice.toString().c_str());     
